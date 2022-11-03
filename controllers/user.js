@@ -19,7 +19,10 @@ exports.user_register = async(req, res, next) => {
     try {
         await user.save().then((result) => {
             console.log("Registered user");
-            res.status(200).send("User registered successfully");
+            res.status(200).send({
+                status: 200,
+                message: "User registered successfully"
+            });
         })
     } catch (err) {
         next(err);
