@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
 const url = process.env.DB_CONNECT;
 
 mongoose.connect(url, {useNewUrlParser: true}, ()=> {
-    console.log("connection established at "+url);
+    console.log("database connection established at "+url);
 })
 
 const db = mongoose.connection;
