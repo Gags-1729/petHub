@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    description: {
+        type: String
+    },
     gender: {
         type: String,
         enum: ['Male', 'Female', 'Other']
@@ -26,6 +29,12 @@ const userSchema = new mongoose.Schema({
     },
     phone: {
         type: String
+    },
+    rating: {
+        type: Number
+    },
+    favorites: {
+        type: Number
     }
 })
 
