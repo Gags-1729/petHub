@@ -47,39 +47,3 @@ app.listen(port, ()=>{
     console.log('Server running at port '+port)
 })
 
-const nodemailer = require('nodemailer')
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    auth: {
-        user: process.env.AUTH_EMAIL,
-        pass: process.env.AUTH_PASSWORD
-    }
-})
-
-transporter.verify((error, success) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Ready for messages");
-      console.log(success);
-    }
-  });
-
-function sendmail(){
-    const mailConfigurations = {
-        from: process.env.AUTH_EMAIL,
-        to: 'gaggup437@gmail.com',
-        subject: 'Sending Email using Node.js',
-        text: 'Hi! There, You know I am using the NodeJS '
-         + 'Code along with NodeMailer to send this email.'
-    };
-        
-    transporter.sendMail(mailConfigurations, function(error, info){
-        if (error) throw Error(error);
-           console.log('Email Sent Successfully');
-        console.log(info);
-    });
-}
-
-sendmail();
