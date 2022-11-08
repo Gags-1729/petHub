@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
+require('dotenv').config()
 
 const User = require('../models/user');
 
