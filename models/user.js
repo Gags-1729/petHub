@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    verified: {
+        type: Boolean,
+        default: false
+    },
     description: {
         type: String
     },
