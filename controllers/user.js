@@ -43,6 +43,28 @@ exports.user_register = async(req, res, next) => {
     }
 }
 
+exports.user_login = async(req, res, next) => {
+    try {
+        const user = await User.findOne({email: req.body.email })
+
+        if(!user){
+            throw createError(404, "Email id does not exist")
+        }
+        if(!user.verified){
+            next(createError(401, "Email not verified"))
+            return;
+        }
+        const validPass = await bcrypt.compare(req.body.password, user.password);
+        if (!validPass) {
+            next(createError(400, "Incorrect password"));
+            return;
+        }
+        res.send(user);
+    } catch(error){
+        next(error);
+    }
+}
+
 exports.user_verify = async(req, res, next) => {
     const {us} = req.params;
     try{
@@ -62,6 +84,27 @@ exports.user_verify = async(req, res, next) => {
         else {
             throw createError(404, "User not found");
         }        
+    } catch(error){
+        next(error);
+    }
+}
+
+
+exports.user_verify_and_login = async(req, res, next) => {
+    const {email} = req.params;
+    try{
+        const user = await User.findOne({ email: email});
+        if(user){
+            if(user.verified){
+                res.status(200)
+                .send(user);
+            }
+            else {
+                res.status(401).send(user);
+            }
+        } else{
+            throw createError(404, "User not found");
+        }
     } catch(error){
         next(error);
     }
