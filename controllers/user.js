@@ -116,7 +116,7 @@ transporter.verify((error, success) => {
 const sendMail = ({name, _id, email}, res, next) => {
 
     const uniqueString = uuidv4() + _id;
-    const curUrl = "http://localhost:3000/" + "api/user/verify/" + uniqueString;
+    const curUrl = "http://pethub.herokuapp.com/" + "api/user/verify/" + uniqueString;
 
     const mailConfigurations = {
         from: process.env.AUTH_EMAIL,
