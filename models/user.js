@@ -22,23 +22,29 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     description: {
-        type: String
+        type: String,
+        default: ""
     },
     gender: {
         type: String,
-        enum: ['Male', 'Female', 'Other']
+        enum: ['','Male', 'Female', 'Other'],
+        default:""
     },
     location: {
-        type: String
+        type: String,
+        default: ""
     },
     phone: {
-        type: String
+        type: String,
+        default: ""
     },
     rating: {
-        type: Number
+        type: Number,
+        default:0
     },
     favorites: {
-        type: Number
+        type: Number,
+        default:0
     }
 })
 

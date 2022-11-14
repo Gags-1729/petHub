@@ -135,6 +135,26 @@ exports.user_find_one = async(req, res, next) => {
     }
 }
 
+exports.user_edit_profile = async(req, res, next) => {
+    try{
+        const {_id, name, description, location, gender, phone} = req.body;
+        const user = User.findOneAndUpdate({_id}, {name, description, location, gender, phone});
+        console.log(name+" "+description+" "+location+" "+gender);
+        console.log(user)
+        if(user){
+            res.status(200)
+            .send({
+                status:200,
+                message:"Profile updated",
+             })
+        } else {
+            next(404, "User not found");
+        }
+    } catch (error){
+        next(error);
+    }
+}
+
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -189,6 +209,7 @@ const sendMail = ({name, _id, email}, res, next) => {
             userID: _id,
             uniqueString: uniqueString,
         });
+        console.log(uniqueString);
         const savedVerify = await userVerify.save();
         console.log('Email Sent Successfully');
         res.status = 200;

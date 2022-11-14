@@ -20,4 +20,7 @@ router.get('/users/', authenticate, userController.user_find_all);
 // get a specific user
 router.get('/users/:id', authenticate, userController.user_find_one);
 
+//edit profile
+router.put('/edit', authenticate, userController.user_edit_profile)
+
 module.exports=router
