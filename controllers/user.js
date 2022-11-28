@@ -50,13 +50,15 @@ exports.user_login = async(req, res, next) => {
         if(!user){
             throw createError(404, "Email id does not exist")
         }
-        if(!user.verified){
-            next(createError(401, "Email not verified"))
-            return;
-        }
+       
         const validPass = await bcrypt.compare(req.body.password, user.password);
         if (!validPass) {
             next(createError(400, "Incorrect password"));
+            return;
+        }
+        
+        if(!user.verified){
+            next(createError(401, "Email not verified"))
             return;
         }
         res.send(user);
