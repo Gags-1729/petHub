@@ -158,23 +158,23 @@ exports.user_edit_profile = async(req, res, next) => {
 }
 
 
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    host: "smtp.gmail.com",
-    auth: {
-        user: process.env.AUTH_EMAIL,
-        pass: process.env.AUTH_PASS
-    }
-})
+// const transporter = nodemailer.createTransport({
+//     service: "gmail",
+//     host: "smtp.gmail.com",
+//     auth: {
+//         user: process.env.AUTH_EMAIL,
+//         pass: process.env.AUTH_PASS
+//     }
+// })
 
-transporter.verify((error, success) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Connection to nodemailer");
-      console.log(success);
-    }
-  });
+// transporter.verify((error, success) => {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       console.log("Connection to nodemailer");
+//       console.log(success);
+//     }
+//   });
 
 
   // Send the email to user for verifying the account
