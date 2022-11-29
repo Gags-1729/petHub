@@ -33,7 +33,7 @@ app.use(expressLayouts)
 
 app.get('/', (req, res) => {
     // res.send("Welcome to PetHub")
-    res.render('index');
+    res.render('index.ejs');
 })
 
 
